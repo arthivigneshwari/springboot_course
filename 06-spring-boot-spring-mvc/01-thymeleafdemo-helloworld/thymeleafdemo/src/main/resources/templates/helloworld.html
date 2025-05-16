@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Thymeleaf Demo</title>
+
+  <!-- @ symbol reference context path of the application -->
+
+</head>
+
+<body>
+
+Hello World of Spring!
+
+<br><br>
+
+Student name: <span th:text="${param.studentName}" />
+
+<br><br>
+<!--  add message to the model -->
+The message: <span th:text="${message}" />
+
+</body>
+
+</html>

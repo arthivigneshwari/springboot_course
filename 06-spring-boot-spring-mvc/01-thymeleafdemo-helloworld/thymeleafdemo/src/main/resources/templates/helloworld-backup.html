@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Thymeleaf Demo</title>
+
+  <!-- referencing css file in thymeleaf template -->
+  <!-- @ symbol reference context path of the application -->
+  <link rel="stylesheet"
+        th:href="@{/css/demo.css}" />
+</head>
+
+<body>
+<!-- apply css style by adding class-->
+  <p th:text="' Time on the server is ' +${theDate}" class="funny" />
+</body>
+
+</html>

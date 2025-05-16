@@ -23,14 +23,54 @@ public class CruddemoApplication {
 		return runner -> {
 			//System.out.println("Hello World");
 			//createStudent(studentDao);
-			//createMultipleStudents(studentDao);
+			createMultipleStudents(studentDao);
 			//readStudent(studentDao);
 			//queryForStudents(studentDao);
-			queryForStudentsByLastName(studentDao);
+			//queryForStudentsByLastName(studentDao);
+            //updateStudent(studentDao);
+            //deleteStudent(studentDao);
+            //deleteAllStudent(studentDao);
 		};
 	}
 
-	private void queryForStudentsByLastName(StudentDAO studentDao) {
+    private void deleteAllStudent(StudentDAO studentDao) {
+        System.out.println("Deleting all students...");
+        int numRowsDeleted = studentDao.deleteAll();
+        System.out.println("Deleted row count: "+numRowsDeleted);
+    }
+
+    private void deleteStudent(StudentDAO studentDao) {
+        int studentId = 3;
+        System.out.println("Deleting student id..."+studentId);
+
+        Student studentToDelete = studentDao.findById(3);
+        if(studentToDelete != null) {
+            System.out.println("Found student: "+studentToDelete);
+            studentDao.delete(studentId);
+            System.out.println("Student deleted...");
+        }else{
+            System.out.println("No student found with id: "+studentId);
+        }
+    }
+
+    private void updateStudent(StudentDAO studentDao) {
+            //retrieve the student id.. primary key
+            Integer studentId=1;
+            System.out.println("Getting student with id " +studentId);
+            Student myStudent = studentDao.findById(studentId);
+
+            //update first name
+            System.out.println("Updating Student...");
+            myStudent.setFirstName("Leo");
+
+           //update the student
+            studentDao.update(myStudent);
+
+           //display the updated student
+            System.out.println("Updated student: " +myStudent);
+    }
+
+    private void queryForStudentsByLastName(StudentDAO studentDao) {
 	      //get a list of students with lastName
 
 		List<Student> theStudents = studentDao.findByLastName("Tiger");

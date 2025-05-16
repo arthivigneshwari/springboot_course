@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+<body>
+
+<h3>Student Registration Form</h3>
+
+<!-- in following line model name is "student" which is object here-->
+<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+
+First Name: <input type="text" th:field="*{firstName}" />
+
+    <br><br>
+
+Last Name: <input type="text" th:field="*{lastName}" />
+
+    <br><br>
+
+   Country:
+    <select th:field="*{country}">
+
+        <!-- th:each for enhanced for loop iterating over countries list,
+        th:value is value sent during form submission,
+        th:text is text displayed to user -->
+        <option th:each="tempCountry : ${countries}"
+                th:value="${tempCountry}"
+                th:text="${tempCountry}" />
+
+    </select>
+
+    <br><br>
+
+    Favorite Programming Language:
+
+    <!-- th:field is binding to property on Student object
+         th:each is enhanced for loop to iterate over list of languages
+         th:value is value sent during form submission
+         th:text is Displayed to the user -->
+
+
+    <input type="radio" th:field="*{favoriteLanguage}"
+                        th:each="tempLang : ${languages}"
+                        th:value="${tempLang}"
+                        th:text="${tempLang}" />
+
+    <br><br>
+
+    <input type="submit" value="Submit" />
+
+</form>
+
+</body>
+</html>
